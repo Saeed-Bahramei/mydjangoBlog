@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <h1>لیست آرتکیل ها</h1> 
-    {% for art in articles %}
-    <h2><a href="#">{{art.title}}</a></h2>
-    <p>{{art.snippet}}</p>
-    <p>{{art.date}}</p>
-    {% endfor %}
+    <div class="container">
+        <h1>لیست آرتکیل ها</h1> 
+        {% for art in articles %}
+        <h2><a href="#">{{art.title}}</a></h2>
+        <p>{{art.snippet}}</p>
+        <p>{{art.date}}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
 
