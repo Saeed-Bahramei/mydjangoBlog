@@ -1,20 +1,25 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>Articles</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>لیست آرتکیل ها</h1> 
+{% extends 'base.html' %}
+
+{% block title %}
+تازه ترین مقالات
+{%endblock%}
+
+{% block content %}
+
+    <h1>لیست مقالات</h1>
+
+    <div class="articles">
         {% for art in articles %}
-        <h2><a href="#">{{art.title}}</a></h2>
-        <p>{{art.snippet}}</p>
-        <p>{{art.date}}</p>
+        <div class="article">
+    
+            <h2><a href="{% url 'articles:detail' slug=art.slug %}">{{art.title}}</a></h2>
+            <p>{{art.snippet}}</p>
+            <p>{{art.date}}</p>
+            <p class="author"> اینو {{art.author.username}} نوشته </p>
+            
+        </div>
         {% endfor %}
     </div>
-</body>
-</html>
+    
+{%endblock%}
 

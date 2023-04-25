@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>صفحه اصلی</title>
-</head>
-<body>
-    <H1>سلام دنیا</H1>
-    <p>خوش اومدید به وبلاگ من</p>
+{% extends 'base.html' %}
 
-    <ul id="login" class="login">
-        <li id="login_btn"><a href="http://127.0.0.1:8000/admin/">ورود</a></li>
-        <li id="reg_btn">ثبت نام</li>
-        <li id="articles"><a href="http://127.0.0.1:8000/articles/">مقالات</a></li>
-        <li id="about"><a href="http://127.0.0.1:8000/about/">درباره من</a></li>
-    </ul>
+{% block title %}
+صفحه اصلی
+{%endblock%}
 
-</body>
-</html>
+{% block content %}
+
+{%endblock%}
+    
+
+

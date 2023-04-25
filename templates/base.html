@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %}
+        {%endblock%}
+    </title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <header class="header">
+                <a href="{% url 'articles:List' %}" class="logo">DJANGO TUTORIAL</a>
+                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="menu">
+                    <li><a href="http://127.0.0.1:8000/about/">درباره من</a></li>
+                    <li><a href="{% url 'articles:List' %}">مقالات</a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">خروج</button>
+                        </form>
+                    </li>
+                    <li><a href="{% url 'articles:create' %}">نوشتن</a></li>
+                    {% else %}
+                    <li><a href="{% url 'accounts:login' %}">ورود</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">ثبت نام</a></li>
+                    {% endif %}
+                </ul>
+            </header>
+        
+
+              <div class="content">
+                {% block content %}
+                {%endblock%} 
+
+              </div>
+
+        </div>
+
+        <div class="right-footer">
+
+        </div>
+    </div>
+
+</body>
+</html>
