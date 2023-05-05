@@ -5,51 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <title>
         {% block title %}
         {%endblock%}
     </title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-
-            <header class="header">
-                <a href="{% url 'articles:List' %}" class="logo">DJANGO TUTORIAL</a>
-                <input class="menu-btn" type="checkbox" id="menu-btn" />
-                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
-                <ul class="menu">
-                    <li><a href="http://127.0.0.1:8000/about/">درباره من</a></li>
-                    <li><a href="{% url 'articles:List' %}">مقالات</a></li>
-                    {% if user.is_authenticated %}
-                    <li>
-                        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">خروج</button>
-                        </form>
-                    </li>
-                    <li><a href="{% url 'articles:create' %}">نوشتن</a></li>
-                    {% else %}
-                    <li><a href="{% url 'accounts:login' %}">ورود</a></li>
-                    <li><a href="{% url 'accounts:signup' %}">ثبت نام</a></li>
-                    {% endif %}
-                </ul>
-            </header>
+    <body>
         
 
-              <div class="content">
-                {% block content %}
-                {%endblock%} 
+        <div class="container">
 
-              </div>
+            <header class="header">
+
+                <div class="logo">
+                    <img src="../media/logo.jpg" alt="حال خوب">
+                </div>
+
+                <nav class="menu">
+
+                    <ul>
+                        <li><a href="{% url 'articles:List' %}">خانه</a></li>
+                        <li><a href="{% url 'articles:List' %}">مقالات</a></li>
+                        <li><a href="http://127.0.0.1:8000/about/">من؟</a></li>
+
+                        {% if user.is_authenticated %}
+                            <li class="profile">
+                                <img src="../media/default-user-icon.png" alt="پنل کاربری">
+                                <ul>
+                                    <li><a href="{% url 'accounts:profile' %}">ناحیه کاربری</a></li>
+                                    <li><a href="{% url 'articles:create' %}">نوشتن</a></li>
+                                    <li>
+                                        <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit">خروج</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li class="login"><a href="{% url 'accounts:login' %}">ورود</a></li>
+                            <li class="signup"><a href="{% url 'accounts:signup' %}">ثبت نام</a></li>
+                        {% endif %}
+                    </ul>
+                    
+                </nav>
+
+                <!-- <input class="menu-btn" type="checkbox" id="menu-btn" />
+                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label> -->
+
+            </header>
+
+            <div class="directory">
+                <h3> در مسیر : خانه > مقالات هستید </h3>
+            </div>
+
+            <div class="row">
+    
+                <div class="content">
+                    {% block content %}
+                    {%endblock%} 
+                </div>
+
+            </div>
+
+            <div class="leftfooter">
+    
+            </div>
+
+
 
         </div>
 
-        <div class="right-footer">
 
-        </div>
-    </div>
 
-</body>
+    </body>
 </html>

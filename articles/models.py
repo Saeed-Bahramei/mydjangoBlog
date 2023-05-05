@@ -3,12 +3,10 @@ from django.contrib.auth.models import User
 from django import forms
 
 messages = {
-    'null' : 'لطفا این فیلد را پر کنید',
-    'blank' : 'لطفا این فیلد را پر کنید', 
-    'invalid' : 'لطفا این فیلد را پر کنید', 
-    'invalid_choice' : 'لطفا این فیلد را پر کنید', 
-    'unique' : 'لطفا این فیلد را پر کنید',
-    'unique_for_date' : 'لطفا این فیلد را پر کنید',
+    'required':'لطفا این فیلد را پر کنید',
+    'invalid':'درست نیست',
+    'min_length':'تعداد کاراکتر های ورودی کمتر از حد مجاز است',
+    'max_length':'تعداد کاراکتر های ورودی بیشتر از حد مجاز است'
 }
 
 class Article(models.Model):
@@ -16,7 +14,7 @@ class Article(models.Model):
     slug = models.SlugField(error_messages = messages)
     body = models.TextField(error_messages = messages)
     date = models.DateTimeField(auto_now_add = True ,error_messages = messages)
-    image = models.ImageField(default='default.jpg', blank=True ,error_messages = messages)
+    image = models.ImageField(default='../media/default.jpg', blank=True ,error_messages = messages)
     author = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -24,3 +22,5 @@ class Article(models.Model):
 
     def snippet(self):
         return self.body[0:50] + ' ...'
+
+    

@@ -11,7 +11,7 @@
     <div class="articles">
         {% for art in articles %}
         <div class="article">
-    
+            <img src="{{article.image.url}}" alt="">
             <h2><a href="{% url 'articles:detail' slug=art.slug %}">{{art.title}}</a></h2>
             <p>{{art.snippet}}</p>
             <p>{{art.date}}</p>

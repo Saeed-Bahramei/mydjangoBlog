@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
+from . import models , forms
 
 def signup_view(request):
     if request.method == 'POST':
@@ -41,3 +42,15 @@ def logout_view(request):
         logout(request)
 
         return redirect('articles:List')
+
+
+
+def profile_view(request):
+    if request.method == 'POST':
+        form = forms.profile(request.POST)
+        if form.is_valid:
+            pass
+    else:
+        form = forms.profile()
+
+    return render(request , 'accounts/profile.html', {'form':form})

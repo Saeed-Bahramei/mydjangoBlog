@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-
 <div class="create-article">
     <h1>
         create your article!
@@ -12,5 +11,5 @@
         <input type="submit" name="" value="بنویسش!">
     </form>
 </div>
-
+<script src="{% static 'menu.js' %}"></script>
 {%endblock%}

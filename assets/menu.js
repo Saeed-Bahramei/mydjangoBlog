@@ -1,5 +1,20 @@
 const item = document.getElementById('switch');
 const mql = window.matchMedia(`(prefers-color-scheme: dark)`);
+const titleInput = document.querySelector('input[name=title]')
+const slugInput = document.querySelector('input[name=slug]')
+
+const slugify = (val)=>{
+  return val.toString().trim()
+    .replace(/&/g,'-and-')    //replace & with -and-
+    .replace(/[\s\W-]+/g,'-')
+};
+
+titleInput.addEventListener('keyup',(e)=>{
+  slugInput.setAttribute('value',slugify(titleInput.value));
+});
+
+
+
 
 function changeTheme(theme) {
   if (theme === 'theme-dark') {
@@ -21,4 +36,5 @@ item.addEventListener('click', () => {
     changeTheme('theme-dark')
   }
 })
+
 
